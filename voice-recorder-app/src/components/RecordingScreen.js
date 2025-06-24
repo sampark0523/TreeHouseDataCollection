@@ -404,7 +404,7 @@ const RecordingScreen = ({ studentId, onComplete }) => {
                   </IconButton>
                 )}
                 <Typography variant="h6" sx={{ mt: 2 }}>
-                  {isRecording ? `Recording... ${formatTime(recordingTime)}` : 'Click to Record'}
+                  {isRecording ? `Recording...` : 'Click to Record'}
                 </Typography>
                  {pendingRecording && (
                     <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>
