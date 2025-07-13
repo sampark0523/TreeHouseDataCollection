@@ -12,12 +12,10 @@ import IconButton from '@mui/material/IconButton';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import Fade from '@mui/material/Fade';
-
 import CloudOffIcon from '@mui/icons-material/CloudOff';
 import CloudQueueIcon from '@mui/icons-material/CloudQueue';
 import CloudDoneIcon from '@mui/icons-material/CloudDone';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import InfoIcon from '@mui/icons-material/Info';
 import MicIcon from '@mui/icons-material/Mic';
 import SchoolIcon from '@mui/icons-material/School';
 import { checkServerStatus } from '../services/recordingService';
@@ -58,15 +56,29 @@ const Home = () => {
       setLastChecked(new Date());
       return false;
     }
-  }, []);
+  }, [setLastChecked]);
 
   useEffect(() => {
-    checkServerStatusWrapper();
-    
-    const intervalId = setInterval(checkServerStatusWrapper, 30000);
-    
+    const handleServerCheck = async () => {
+      try {
+        const isOnline = await checkServerStatus();
+        
+        setServerStatus(isOnline ? 'online' : 'offline');
+        setLastChecked(new Date());
+  
+      } catch (error) {
+        console.error("Failed to check server status:", error);
+        setServerStatus('offline');
+      }
+    };
+  
+    handleServerCheck();
+  
+    // Set an interval to check again every 60 seconds to avoid rate-limiting.
+    const intervalId = setInterval(handleServerCheck, 60000);
     return () => clearInterval(intervalId);
-  }, [checkServerStatusWrapper]);
+    
+  }, []);
 
 
   const handleSubmit = async (e) => {
