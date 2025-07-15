@@ -99,16 +99,14 @@ MAX_FILE_SIZE=10485760  # 10MB
 
 2. **Recording Screen**:
    - The current letter/word to record is displayed prominently
-   - Click the microphone button to start recording (3-second countdown)
+   - Click the microphone button to start recording
    - After recording, you can:
      - Click "Redo" to re-record the current item
-     - Click "Next" to proceed to the next repetition or item
+     - Click on microphone to proceed to the next repetition or item
    - Progress is shown at the bottom of the screen
-   - Click "View Recordings" to see all recordings for the current session
 
 3. **Completion**:
    - After recording all items, a completion message is displayed
-   - Click "View My Recordings" to see all recordings
    - Click "Return to Home" to start a new session
 
 ## File Naming Convention
